@@ -23,22 +23,23 @@ public class Ignite2Application {
         CacheConfiguration<String, String> cacheCfg = new CacheConfiguration<String, String>();
         cacheCfg.setBackups(1);
         cacheCfg.setCacheMode(CacheMode.PARTITIONED);
-        cacheCfg.setName("myCache");
-        cacheCfg.setAtomicityMode(CacheAtomicityMode.TRANSACTIONAL);
+        cacheCfg.setName("main");
+        //cacheCfg.setAtomicityMode(CacheAtomicityMode.TRANSACTIONAL);
 
-        //IgniteCache<String, String> cache = ignite.getOrCreateCache(cacheCfg);
-        IgniteCache<Object, Object> cache = ignite.cache("lockCache");
-        Lock lock = cache.lock("resendLock");
-        boolean b = lock.tryLock();
-        if (b){
-            System.out.println("获取锁成功===================");
-        }else {
-            System.out.println("获取锁失败=======================");
-        }
+        IgniteCache<String, String> cache = ignite.getOrCreateCache(cacheCfg);
+        cache.put("1","2");
+//        Lock lock = cache.lock("resendLock");
+//        boolean b = lock.tryLock();
+//        if (b){
+//            System.out.println("获取锁成功===================");
+//        }else {
+//            System.out.println("获取锁失败=======================");
+//        }
 
       //  lock.unlock();
 
-        //System.out.println(cache.get(""));
+        System.out.println(cache.get("1"));
+
     }
 
 }

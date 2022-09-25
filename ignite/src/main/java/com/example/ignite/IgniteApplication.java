@@ -26,8 +26,7 @@ public class IgniteApplication {
         cacheCfg.setName("myCache");
         cacheCfg.setAtomicityMode(CacheAtomicityMode.TRANSACTIONAL);
 
-        //IgniteCache<String, String> cache = ignite.getOrCreateCache(cacheCfg);
-        IgniteCache<Object, Object> cache = ignite.cache("lockCache");
+        IgniteCache<String, String> cache = ignite.getOrCreateCache(cacheCfg);
         Lock resendLock = cache.lock("resendLock");
         boolean b = resendLock.tryLock();
         if (b){
@@ -35,7 +34,7 @@ public class IgniteApplication {
         }else {
             System.out.println("获取锁失败=======================");
         }
-       // resendLock.unlock();
+        //resendLock.unlock();
         System.out.println("");
     }
 
