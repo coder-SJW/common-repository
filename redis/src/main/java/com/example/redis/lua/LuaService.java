@@ -44,7 +44,7 @@ private Jedis jedis;
                 "        return \"update success\"\n" +
                 "    else\n" +
                 "        return \"update error\"\n" +
-                "    end\n" +
+                "    end\n" +   
                 "else\n" +
                 "    return \"key is not found\"\n" +
                 "end" ;
